@@ -17,9 +17,22 @@ class _Node(Generic[_Value]):
 class HashTable(Generic[_Value]):
     """Store key/value pairs in a resizable, separately chained hash table."""
 
-    def __init__(self):
-        self._buckets: list[_Node[_Value] | None] = [None] * 11
+    def __init__(
+        self, initial_capacity: int = 11, max_load: float | None = 0.75
+    ):
+        if isinstance(initial_capacity, bool) or not isinstance(initial_capacity, int):
+            raise TypeError("initial_capacity must be an integer")
+        if initial_capacity <= 0:
+            raise ValueError("initial_capacity must be positive")
+        if max_load is not None:
+            if isinstance(max_load, bool) or not isinstance(max_load, (int, float)):
+                raise TypeError("max_load must be a number or None")
+            if max_load <= 0:
+                raise ValueError("max_load must be positive")
+
+        self._buckets: list[_Node[_Value] | None] = [None] * initial_capacity
         self._size = 0
+        self._max_load = max_load
 
     @property
     def capacity(self) -> int:
@@ -55,7 +68,7 @@ class HashTable(Generic[_Value]):
 
         self._buckets[index] = _Node(key, value, self._buckets[index])
         self._size += 1
-        if self._size / self.capacity > 0.75:
+        if self._max_load is not None and self._size / self.capacity > self._max_load:
             self._resize(_next_prime(self.capacity * 2))
 
     def get(self, key: str) -> _Value | None:
