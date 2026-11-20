@@ -42,6 +42,18 @@ class HashTableTests(unittest.TestCase):
             with self.subTest(index=index):
                 self.assertEqual(table.get(f"key-{index}"), f"value-{index}")
 
+    def test_custom_capacity_and_disabled_resize(self):
+        table = HashTable(initial_capacity=5, max_load=None)
+
+        for index in range(10):
+            table.put(f"key-{index}", f"value-{index}")
+
+        self.assertEqual(table.capacity, 5)
+        self.assertEqual(len(table), 10)
+        for index in range(10):
+            with self.subTest(index=index):
+                self.assertEqual(table.get(f"key-{index}"), f"value-{index}")
+
 
 if __name__ == "__main__":
     unittest.main()
