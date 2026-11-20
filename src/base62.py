@@ -1,7 +1,6 @@
 """Encode and decode non-negative integers using the 0-9, a-z, A-Z alphabet."""
 
 ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-_CHAR_TO_VALUE = {character: value for value, character in enumerate(ALPHABET)}
 
 
 def encode(value: int) -> str:
@@ -29,9 +28,8 @@ def decode(encoded: str) -> int:
 
     value = 0
     for character in encoded:
-        try:
-            digit = _CHAR_TO_VALUE[character]
-        except KeyError:
+        digit = ALPHABET.find(character)
+        if digit < 0:
             raise ValueError(f"invalid base62 character: {character!r}") from None
         value = value * len(ALPHABET) + digit
     return value
