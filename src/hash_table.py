@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from typing import Generic, TypeVar
 
 _Value = TypeVar("_Value")
@@ -40,6 +41,16 @@ class HashTable(Generic[_Value]):
 
     def __len__(self) -> int:
         return self._size
+
+    def iter_buckets(self) -> Iterator[tuple[tuple[str, _Value], ...]]:
+        """Yield each bucket's entries in chain order."""
+        for bucket in self._buckets:
+            entries = []
+            node = bucket
+            while node is not None:
+                entries.append((node.key, node.value))
+                node = node.next
+            yield tuple(entries)
 
     @staticmethod
     def _validate_key(key: str) -> None:
