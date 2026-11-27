@@ -60,8 +60,29 @@ class ShortenerServerTests(unittest.TestCase):
         self.assertIn("짧은 코드", page)
         self.assertIn("짧은 링크", page)
         self.assertIn("호너 해시 계산 과정", page)
-        self.assertIn("31 + ord(", page)
+        self.assertIn("(31 * 0 + ord(&#x27;h&#x27;)) % 11 = 5", page)
+        self.assertIn("(31 * 5 + ord(&#x27;t&#x27;)) % 11", page)
         self.assertIn(" → ", page)
+
+    def test_short_links_use_forwarded_codespaces_address(self):
+        proxy_headers = {
+            "X-Forwarded-Host": "my-codespace-8000.app.github.dev, internal",
+            "X-Forwarded-Proto": "https, http",
+        }
+        short_link = "https://my-codespace-8000.app.github.dev/0"
+        form = urlencode({"url": "https://example.com/path"})
+        status, _, _, body = self.request(
+            "POST",
+            "/",
+            body=form,
+            headers=proxy_headers,
+        )
+        self.assertEqual(status, 201)
+        self.assertIn(f'href="{short_link}"', body.decode("utf-8"))
+
+        status, _, _, body = self.request("GET", "/table", headers=proxy_headers)
+        self.assertEqual(status, 200)
+        self.assertIn(f'href="{short_link}"', body.decode("utf-8"))
 
     def test_json_api_and_invalid_requests(self):
         body = json.dumps({"url": "https://example.com"})
