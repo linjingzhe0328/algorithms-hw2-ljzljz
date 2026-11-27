@@ -162,21 +162,22 @@ class ShortenerHandler(BaseHTTPRequestHandler):
     def _table_node(self, key: str, code: str, bucket_index: int) -> str:
         escaped_key = escape(key)
         short_url = escape(self._short_url(code), quote=True)
+        modulus = self.shortener._url_to_code.capacity
         hash_value = 0
         steps = []
         for character in key:
             previous = hash_value
             character_code = ord(character)
-            hash_value = previous * 31 + character_code
+            hash_value = (31 * previous + character_code) % modulus
             steps.append(
                 "<li>"
-                f"{previous} × 31 + ord({escape(repr(character))}) "
-                f"({character_code}) = {hash_value}"
+                f"(31 * {previous} + ord({escape(repr(character))})) "
+                f"% {modulus} = {hash_value}"
                 "</li>"
             )
         trace = (
             "<p>호너 해시: "
-            f"<code>{hash_value}</code> mod {self.shortener._url_to_code.capacity} "
+            f"<code>{hash_value}</code> mod {modulus} "
             f"= 칸 {bucket_index}</p><ol>{''.join(steps)}</ol>"
         )
         return (
@@ -189,7 +190,10 @@ class ShortenerHandler(BaseHTTPRequestHandler):
         )
 
     def _short_url(self, code: str) -> str:
-        host = self.headers.get("Host", "localhost:8000")
+        forwarded_host = self.headers.get("X-Forwarded-Host", "")
+        host = forwarded_host.split(",", 1)[0].strip() or self.headers.get(
+            "Host", "localhost:8000"
+        )
         forwarded_proto = self.headers.get("X-Forwarded-Proto", "")
         scheme = "https" if forwarded_proto.split(",", 1)[0].strip().lower() == "https" else "http"
         return f"{scheme}://{host}/{code}"
