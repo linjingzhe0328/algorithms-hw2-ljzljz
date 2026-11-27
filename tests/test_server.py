@@ -64,6 +64,20 @@ class ShortenerServerTests(unittest.TestCase):
         self.assertIn("(31 * 5 + ord(&#x27;t&#x27;)) % 11", page)
         self.assertIn(" → ", page)
 
+    def test_table_shows_linear_probe_path_and_horner_steps(self):
+        ShortenerHandler.shortener = URLShortener("linear_probing")
+        ShortenerHandler.shortener.shorten("https://a.com")
+        ShortenerHandler.shortener.shorten("https://l.com")
+
+        status, _, _, body = self.request("GET", "/table")
+        page = body.decode("utf-8")
+        self.assertEqual(status, 200)
+        self.assertIn("선형 탐지", page)
+        self.assertIn("선형 탐지 순서", page)
+        self.assertIn("칸 8 확인", page)
+        self.assertIn("칸 9 확인 (저장된 키)", page)
+        self.assertIn("(31 * 0 + ord(&#x27;h&#x27;)) % 11 = 5", page)
+
     def test_short_links_use_forwarded_codespaces_address(self):
         proxy_headers = {
             "X-Forwarded-Host": "my-codespace-8000.app.github.dev, internal",

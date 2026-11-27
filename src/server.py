@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from urllib.parse import parse_qsl, urlsplit
 
+from src.linear_probing_hash_table import LinearProbingHashTable
 from src.shortener import URLShortener
 
 _MAX_REQUEST_BYTES = 1_000_000
@@ -137,6 +138,7 @@ class ShortenerHandler(BaseHTTPRequestHandler):
 
     def _table_page(self) -> str:
         table = self.shortener._url_to_code
+        is_linear_probing = isinstance(table, LinearProbingHashTable)
         buckets = []
         for index, entries in enumerate(table.iter_buckets()):
             nodes = []
@@ -151,6 +153,7 @@ class ShortenerHandler(BaseHTTPRequestHandler):
             )
         content = (
             "<h1>URL → 짧은 코드 해시 테이블</h1>"
+            f"<p>충돌 처리: {'선형 탐지' if is_linear_probing else '개별 체이닝'}</p>"
             f"<p>칸 수: {table.capacity} · 저장된 URL: {len(table)}</p>"
             '<p><a href="/">URL 줄이기</a></p>'
             '<div class="buckets">'
@@ -162,7 +165,8 @@ class ShortenerHandler(BaseHTTPRequestHandler):
     def _table_node(self, key: str, code: str, bucket_index: int) -> str:
         escaped_key = escape(key)
         short_url = escape(self._short_url(code), quote=True)
-        modulus = self.shortener._url_to_code.capacity
+        table = self.shortener._url_to_code
+        modulus = table.capacity
         hash_value = 0
         steps = []
         for character in key:
@@ -175,11 +179,25 @@ class ShortenerHandler(BaseHTTPRequestHandler):
                 f"% {modulus} = {hash_value}"
                 "</li>"
             )
-        trace = (
-            "<p>호너 해시: "
-            f"<code>{hash_value}</code> mod {modulus} "
-            f"= 칸 {bucket_index}</p><ol>{''.join(steps)}</ol>"
-        )
+        if isinstance(table, LinearProbingHashTable):
+            inspected = table.probe_indices(key)
+            probe_steps = "".join(
+                f"<li>칸 {index} 확인"
+                f"{' (저장된 키)' if index == bucket_index else ''}</li>"
+                for index in inspected
+            )
+            trace = (
+                "<p>호너 해시: "
+                f"<code>{hash_value}</code> mod {modulus} = 시작 칸 {hash_value}</p>"
+                f"<ol>{''.join(steps)}</ol>"
+                f"<p>선형 탐지 순서:</p><ol>{probe_steps}</ol>"
+            )
+        else:
+            trace = (
+                "<p>호너 해시: "
+                f"<code>{hash_value}</code> mod {modulus} "
+                f"= 칸 {bucket_index}</p><ol>{''.join(steps)}</ol>"
+            )
         return (
             '<article class="node">'
             f"<p><strong>URL 키</strong>: <code>{escaped_key}</code></p>"
@@ -268,7 +286,14 @@ def main() -> None:
 
     parser = ArgumentParser(description="Run the URL shortener web server.")
     parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument(
+        "--strategy",
+        choices=("chaining", "linear_probing"),
+        default="chaining",
+        help="collision resolution strategy",
+    )
     args = parser.parse_args()
+    ShortenerHandler.shortener = URLShortener(args.strategy)
     server = HTTPServer(("", args.port), ShortenerHandler)
     print(f"Serving URL shortener on port {args.port}")
     try:

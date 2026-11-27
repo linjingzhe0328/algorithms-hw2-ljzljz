@@ -4,8 +4,10 @@ from src.shortener import URLShortener
 
 
 class URLShortenerTests(unittest.TestCase):
+    collision_strategy = "chaining"
+
     def setUp(self):
-        self.shortener = URLShortener()
+        self.shortener = URLShortener(self.collision_strategy)
 
     def test_shorten_accepts_http_and_https_urls(self):
         http_code = self.shortener.shorten("http://example.com")
@@ -65,10 +67,18 @@ class URLShortenerTests(unittest.TestCase):
 
     def test_new_shortener_has_no_previous_instance_mappings(self):
         code = self.shortener.shorten("https://example.com")
-        restarted_shortener = URLShortener()
+        restarted_shortener = URLShortener(self.collision_strategy)
 
         with self.assertRaises(KeyError):
             restarted_shortener.expand(code)
+
+
+class LinearProbingURLShortenerTests(URLShortenerTests):
+    collision_strategy = "linear_probing"
+
+    def test_unknown_collision_strategy_is_rejected(self):
+        with self.assertRaises(ValueError):
+            URLShortener(collision_strategy="unknown")
 
 
 if __name__ == "__main__":

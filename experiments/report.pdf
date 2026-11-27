@@ -1,0 +1,271 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 5675 >>
+stream
+BT /F1 19 Tf 45.00 755.00 Td (Linear probing and separate chaining) Tj ET
+BT /F1 10 Tf 45.00 738.00 Td (Measured average search probes and theoretical estimates) Tj ET
+BT /F1 13 Tf 65.00 670.00 Td (Separate chaining) Tj ET
+0.85 G
+70.00 430.00 m 295.00 430.00 l S
+0 G
+BT /F1 7 Tf 39.00 427.00 Td (0) Tj ET
+0.85 G
+70.00 471.00 m 295.00 471.00 l S
+0 G
+BT /F1 7 Tf 39.00 468.00 Td (0.5) Tj ET
+0.85 G
+70.00 512.00 m 295.00 512.00 l S
+0 G
+BT /F1 7 Tf 39.00 509.00 Td (1) Tj ET
+0.85 G
+70.00 553.00 m 295.00 553.00 l S
+0 G
+BT /F1 7 Tf 39.00 550.00 Td (1.5) Tj ET
+0.85 G
+70.00 594.00 m 295.00 594.00 l S
+0 G
+BT /F1 7 Tf 39.00 591.00 Td (2) Tj ET
+0.85 G
+70.00 635.00 m 295.00 635.00 l S
+0 G
+BT /F1 7 Tf 39.00 632.00 Td (2.5) Tj ET
+BT /F1 7 Tf 63.00 415.00 Td (0.0) Tj ET
+BT /F1 7 Tf 88.00 415.00 Td (0.1) Tj ET
+BT /F1 7 Tf 113.00 415.00 Td (0.2) Tj ET
+BT /F1 7 Tf 138.00 415.00 Td (0.3) Tj ET
+BT /F1 7 Tf 163.00 415.00 Td (0.4) Tj ET
+BT /F1 7 Tf 188.00 415.00 Td (0.5) Tj ET
+BT /F1 7 Tf 213.00 415.00 Td (0.6) Tj ET
+BT /F1 7 Tf 238.00 415.00 Td (0.7) Tj ET
+BT /F1 7 Tf 263.00 415.00 Td (0.8) Tj ET
+BT /F1 7 Tf 288.00 415.00 Td (0.9) Tj ET
+BT /F1 7 Tf 288.00 415.00 Td (0.9) Tj ET
+0 G
+70.00 430.00 m 70.00 635.00 l S
+70.00 430.00 m 295.00 430.00 l S
+BT /F1 8 Tf 147.00 401.00 Td (Load factor) Tj ET
+BT /F1 7 Tf 42.00 642.00 Td (Average probes) Tj ET
+0.09 0.41 0.67 RG
+[] 0 d
+94.98 516.41 m
+120.02 520.01 l
+145.01 523.69 l
+169.99 527.73 l
+195.03 532.43 l
+220.01 536.41 l
+244.99 540.65 l
+269.98 544.86 l
+295.02 549.13 l
+S
+0.09 0.41 0.67 RG
+[4 3] 0 d
+94.98 516.10 m
+120.02 520.20 l
+145.01 524.30 l
+169.99 528.40 l
+195.03 532.51 l
+220.01 536.60 l
+244.99 540.70 l
+269.98 544.80 l
+295.02 548.90 l
+S
+0.82 0.29 0.34 RG
+[] 0 d
+94.98 439.22 m
+120.02 448.02 l
+145.01 454.77 l
+169.99 463.91 l
+195.03 472.14 l
+220.01 479.88 l
+244.99 488.33 l
+269.98 496.35 l
+295.02 504.68 l
+S
+0.82 0.29 0.34 RG
+[4 3] 0 d
+94.98 438.19 m
+120.02 446.41 l
+145.01 454.60 l
+169.99 462.80 l
+195.03 471.01 l
+220.01 479.20 l
+244.99 487.40 l
+269.98 495.59 l
+295.02 503.81 l
+S
+0 G
+[] 0 d
+0.09 0.41 0.67 RG
+[] 0 d
+47.00 385.00 m 67.00 385.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 71.00 382.00 Td (Success measured) Tj ET
+0.09 0.41 0.67 RG
+[4 3] 0 d
+180.00 385.00 m 200.00 385.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 204.00 382.00 Td (Success theory) Tj ET
+0.82 0.29 0.34 RG
+[] 0 d
+47.00 371.00 m 67.00 371.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 71.00 368.00 Td (Failure measured) Tj ET
+0.82 0.29 0.34 RG
+[4 3] 0 d
+180.00 371.00 m 200.00 371.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 204.00 368.00 Td (Failure theory) Tj ET
+BT /F1 13 Tf 345.00 670.00 Td (Linear probing) Tj ET
+0.85 G
+350.00 430.00 m 575.00 430.00 l S
+0 G
+BT /F1 7 Tf 319.00 427.00 Td (0) Tj ET
+0.85 G
+350.00 467.27 m 575.00 467.27 l S
+0 G
+BT /F1 7 Tf 319.00 464.27 Td (10) Tj ET
+0.85 G
+350.00 504.55 m 575.00 504.55 l S
+0 G
+BT /F1 7 Tf 319.00 501.55 Td (20) Tj ET
+0.85 G
+350.00 541.82 m 575.00 541.82 l S
+0 G
+BT /F1 7 Tf 319.00 538.82 Td (30) Tj ET
+0.85 G
+350.00 579.09 m 575.00 579.09 l S
+0 G
+BT /F1 7 Tf 319.00 576.09 Td (40) Tj ET
+0.85 G
+350.00 616.36 m 575.00 616.36 l S
+0 G
+BT /F1 7 Tf 319.00 613.36 Td (50) Tj ET
+BT /F1 7 Tf 343.00 415.00 Td (0.0) Tj ET
+BT /F1 7 Tf 368.00 415.00 Td (0.1) Tj ET
+BT /F1 7 Tf 393.00 415.00 Td (0.2) Tj ET
+BT /F1 7 Tf 418.00 415.00 Td (0.3) Tj ET
+BT /F1 7 Tf 443.00 415.00 Td (0.4) Tj ET
+BT /F1 7 Tf 468.00 415.00 Td (0.5) Tj ET
+BT /F1 7 Tf 493.00 415.00 Td (0.6) Tj ET
+BT /F1 7 Tf 518.00 415.00 Td (0.7) Tj ET
+BT /F1 7 Tf 543.00 415.00 Td (0.8) Tj ET
+BT /F1 7 Tf 568.00 415.00 Td (0.9) Tj ET
+BT /F1 7 Tf 568.00 415.00 Td (0.9) Tj ET
+0 G
+350.00 430.00 m 350.00 635.00 l S
+350.00 430.00 m 575.00 430.00 l S
+BT /F1 8 Tf 427.00 401.00 Td (Load factor) Tj ET
+BT /F1 7 Tf 322.00 642.00 Td (Average probes) Tj ET
+0.09 0.41 0.67 RG
+[] 0 d
+374.98 433.93 m
+400.02 434.21 l
+425.01 434.51 l
+449.99 434.96 l
+475.03 435.63 l
+500.01 436.64 l
+524.99 437.96 l
+549.98 440.89 l
+575.02 449.45 l
+S
+0.09 0.41 0.67 RG
+[4 3] 0 d
+374.98 433.93 m
+400.02 434.19 l
+425.01 434.53 l
+449.99 434.97 l
+475.03 435.59 l
+500.01 436.52 l
+524.99 438.08 l
+549.98 441.18 l
+575.02 450.51 l
+S
+0.82 0.29 0.34 RG
+[] 0 d
+374.98 434.20 m
+400.02 434.87 l
+425.01 435.63 l
+449.99 437.13 l
+475.03 439.08 l
+500.01 442.77 l
+524.99 450.73 l
+549.98 474.19 l
+575.02 612.02 l
+S
+0.82 0.29 0.34 RG
+[4 3] 0 d
+374.98 434.16 m
+400.02 434.78 l
+425.01 435.67 l
+449.99 437.04 l
+475.03 439.32 l
+500.01 443.51 l
+524.99 452.57 l
+549.98 478.41 l
+575.02 618.50 l
+S
+0 G
+[] 0 d
+0.09 0.41 0.67 RG
+[] 0 d
+327.00 385.00 m 347.00 385.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 351.00 382.00 Td (Success measured) Tj ET
+0.09 0.41 0.67 RG
+[4 3] 0 d
+460.00 385.00 m 480.00 385.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 484.00 382.00 Td (Success theory) Tj ET
+0.82 0.29 0.34 RG
+[] 0 d
+327.00 371.00 m 347.00 371.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 351.00 368.00 Td (Failure measured) Tj ET
+0.82 0.29 0.34 RG
+[4 3] 0 d
+460.00 371.00 m 480.00 371.00 l S
+0 G
+[] 0 d
+BT /F1 7 Tf 484.00 368.00 Td (Failure theory) Tj ET
+BT /F1 9 Tf 45.00 345.00 Td (Method: same deterministic URL keys, capacity 4,093, and load factors 0.1-0.9.) Tj ET
+BT /F1 9 Tf 45.00 329.00 Td (Chaining estimates: success 1 + alpha/2; failure alpha.) Tj ET
+BT /F1 9 Tf 45.00 313.00 Td (Linear probing estimates: success \(1 + 1/\(1-alpha\)\)/2;) Tj ET
+BT /F1 9 Tf 45.00 299.00 Td (failure \(1 + 1/\(1-alpha\)^2\)/2. Probes count inspected slots or nodes.) Tj ET
+BT /F1 9 Tf 45.00 275.00 Td (At alpha=0.9, chaining success/failure: 1.45/0.91; linear probing: 5.22/48.84.) Tj ET
+BT /F1 9 Tf 45.00 257.00 Td (Linear probing develops primary clusters, increasing especially unsuccessful searches) Tj ET
+BT /F1 9 Tf 45.00 243.00 Td (at high load; separate chaining remains close to its expected linear growth.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000005973 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+6043
+%%EOF
