@@ -4,14 +4,25 @@ from urllib.parse import urlsplit
 
 from src.base62 import decode, encode
 from src.hash_table import HashTable
+from src.linear_probing_hash_table import LinearProbingHashTable
 
 
 class URLShortener:
     """Map validated HTTP(S) URLs to sequential base62 codes."""
 
-    def __init__(self):
-        self._url_to_code: HashTable[str] = HashTable()
-        self._code_to_url: HashTable[str] = HashTable()
+    def __init__(self, collision_strategy: str = "chaining"):
+        self._url_to_code: HashTable[str] | LinearProbingHashTable[str]
+        self._code_to_url: HashTable[str] | LinearProbingHashTable[str]
+        if collision_strategy == "chaining":
+            self._url_to_code = HashTable()
+            self._code_to_url = HashTable()
+        elif collision_strategy == "linear_probing":
+            self._url_to_code = LinearProbingHashTable()
+            self._code_to_url = LinearProbingHashTable()
+        else:
+            raise ValueError(
+                "collision_strategy must be 'chaining' or 'linear_probing'"
+            )
         self._next_id = 0
 
     def shorten(self, url: str) -> str:

@@ -21,8 +21,9 @@
 | --- | --- |
 | `SPEC.md` | 명세 틀. 에이전트가 초안을 쓰고 **본인이 고칩니다** |
 | `src/base62.py` | 음이 아닌 정수의 base62 인코딩·디코딩 |
+| `src/linear_probing_hash_table.py` | 선형 탐지 해시 테이블 |
 | `tests/test_base62.py` | base62 함수의 단위 테스트 |
-| `experiments/` | 수업에서 채웁니다 |
+| `experiments/` | 해시 테이블 탐색 비용 측정, 그래프와 보고서 |
 | `tools/catchup.sh` | 수업 중 놓친 단계를 따라잡는 스크립트 |
 | `Makefile` | `make test` · `make serve` · `make experiment` |
 
@@ -39,13 +40,16 @@ base62 함수는 `0-9`, `a-z`, `A-Z` 순서의 62개 문자를 사용합니다.
 | 하고 싶은 것 | 명령 |
 | --- | --- |
 | 테스트 | `make test` |
-| 웹 서버 (포트 8000) | `make serve` |
+| 웹 서버 (포트 8000, 개별 체이닝) | `make serve` |
+| 선형 탐지 웹 서버 | `make serve STRATEGY=linear_probing` |
 | 충돌 실험 | `make experiment` |
 | 놓친 단계 따라잡기 | `sh tools/catchup.sh <단계 번호>` |
 
 외부 라이브러리는 쓰지 않습니다. Python 표준 모듈만으로 충분합니다.
 서버 첫 화면에서 URL을 줄일 수 있고, `/table`에서 URL→코드 해시 테이블과
-각 키의 호너 해시 계산 과정을 확인할 수 있습니다.
+각 키의 호너 해시 계산 과정을 확인할 수 있습니다. 선형 탐지 방식에서는 충돌 시 확인한 칸도 표시합니다.
+`make experiment`는 같은 키와 용량에서의 측정값을 `experiments/results.csv`에,
+비교 그래프를 `experiments/results.svg`에, 1쪽 요약 보고서를 `experiments/report.pdf`에 저장합니다.
 
 ## 로컬에서 하기
 
